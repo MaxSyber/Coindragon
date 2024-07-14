@@ -1,107 +1,634 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
 :root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --clr-background-primary: #02121b;
+  --clr-background-secondary: #2F4858;
+  --clr-divider: #00293D;
 
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --clr-text-light: #FFFFFF;
+  --clr-text-dark: #2F4858;
 
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+  --clr-link: #59A9FF;
 
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
+  --clr-blue: #59A9FF;
+  --clr-green: #488451;
+  --clr-red: #D32C1E;
+  --clr-orange: #D3A01E;
 
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
+  --spacer: 1em;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html,
 body {
-  max-width: 100vw;
+  background-color: var(--clr-background-primary);
+  color: var(--clr-text-dark);
+
+  font-family: "Josefin Sans";
+  letter-spacing: -1px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr auto;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* ------------------------------------------------------ */
+/* TEXT */
+
+h1 {
+  font-size: clamp(1.25em, 3vw, 2em);
+  letter-spacing: -3px;
+
+  color: var(--clr-text-light);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+h2 {
+  /* Only used in Main */
+  grid-column: 1 / -1;
+  grid-row: 1;
+
+  color: var(--clr-text-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+h3 {
+  font-size: clamp(1.20em, 3vw, 1.40em);
+  font-weight: 300;
+  letter-spacing: -1px;
+}
+
+/* ------------------------------------------------------ */
+/* LAYOUT */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* ------------------------------------------------------ */
+/* HEADER */
+
+header {
+  grid-column: 2 / -2;
+  grid-row: 1;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  padding: var(--spacer) 0;
+}
+
+header h1 {
+  grid-column: 1;
+}
+
+header nav {
+  grid-column: -1;
+  place-self: center;
+}
+
+header nav ul {
+  display: flex;
+
+  list-style: none;
+}
+
+header nav ul li {
+  margin: 0 0.5em;
+}
+
+header nav ul li a {
+  color: var(--clr-blue);
+
+  font-size: clamp(1.10em, 2vw, 1em);
+}
+
+/* ------------------------------------------------------ */
+/* MAIN */
+
+main {
+  grid-column: 2 / -2;
+  grid-row: 2;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+/* ------------------------------------------------------ */
+/* FOOTER */
+
+footer {
+  grid-column: 2 / -2;
+  grid-row: 3;
+
+  padding: var(--spacer) 0;
+  text-align: center;
+
+  color: var(--clr-text-light);
+}
+
+/* ------------------------------------------------------ */
+/* PAGE STYLES */
+
+/* OVERVIEW */
+
+.overview {
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  margin: 1em 0 1em 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+  grid-auto-flow: dense;
+
+  place-items: end;
+  align-items: center;
+
+  padding-bottom: 2em;
+
+  transition: 250ms ease all;
+}
+
+.overview p {
+  margin-top: 1em;
+
+  text-align: center;
+  font-size: 1.50em;
+  font-weight: 600;
+}
+
+.overview__account,
+.overview__tracked,
+.overview__total,
+.overview__change {
+  background-color: var(--clr-background-secondary);
+  color: var(--clr-text-light);
+
+  width: 100%;
+  height: 125px;
+
+  padding: 1em;
+
+  border-radius: .50em;
+
+  position: relative;
+}
+
+.overview__account button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--clr-blue);
+
+  width: 40px;
+  height: 40px;
+  margin-top: 0.50em;
+
+  border: none;
+  border-radius: 50%;
+
+
+  cursor: pointer;
+  transition: 250ms ease all;
+}
+
+.overview__tracked button,
+.popup__content button {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+
+  background-color: var(--clr-blue);
+
+  width: 25px;
+  height: 25px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-family: "Josefin Sans";
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 250ms ease all;
+}
+
+.overview__tracked button img,
+.popup__content button img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overview__account button:hover,
+.overview__tracked button:hover,
+.popup__content button:hover {
+  background-color: var(--clr-orange);
+}
+
+.divider {
+  position: absolute;
+  top: -25px;
+  left: -50%;
+  z-index: -1;
+
+  width: 200%;
+  height: 50px;
+
+  background-color: var(--clr-divider);
+}
+
+.divider::after {
+  content: url("data:image/svg+xml,%3Csvg width='200' height='160' viewBox='0 0 100 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_44_2)'%3E%3Cpath d='M54.9998 19.4531L46.8904 17.4219C45.8747 17.1719 45.1247 16.3125 45.0154 15.2656C44.906 14.2188 45.4529 13.2188 46.3747 12.75L52.7498 9.5625L45.9997 4.5C45.1404 3.85938 44.781 2.73438 45.1247 1.70313C45.4685 0.671875 46.4216 0 47.4997 0H64.9998H69.9998H72.4998C77.2185 0 81.6716 2.21875 84.4998 6L93.4998 18C94.4685 19.2969 94.9998 20.875 94.9998 22.5C94.9998 26.6406 91.6404 30 87.4998 30H84.1404C81.4841 30 78.9373 28.9531 77.0623 27.0781L74.9998 25H69.9998V28.3594C69.9998 32.2344 71.9998 35.8438 75.281 37.9063L91.9373 48.3125C96.9529 51.4531 99.9998 56.9375 99.9998 62.8594C99.9998 72.3281 92.3279 80 82.8435 80H77.4998H67.4998H5.04659C4.53096 80 4.01534 79.9375 3.54659 79.7813C2.10909 79.3438 0.937211 78.2813 0.374711 76.8906C0.155961 76.3594 0.0309604 75.8125 -0.000289627 75.2188C-0.0315397 74.6406 0.0465854 74.0781 0.202836 73.5469C0.640336 72.1094 1.70284 70.9375 3.10909 70.3594C3.57784 70.1719 4.07784 70.0469 4.59346 70.0156L67.7029 64.375C68.9998 64.2656 69.9998 63.1719 69.9998 61.8594C69.9998 61.1875 69.7341 60.5469 69.2654 60.0781L62.3279 53.1406C57.6404 48.4531 54.9998 42.0938 54.9998 35.4688V28.3594V19.4531ZM79.9998 11.2969C79.9998 11.2813 79.9998 11.2656 79.9998 11.25C79.9998 11.2344 79.9998 11.2188 79.9998 11.2031V11.2969ZM79.7966 12.4531L72.5466 10.6406C72.5154 10.8438 72.4998 11.0469 72.4998 11.25C72.4998 13.3281 74.1716 15 76.2498 15C77.906 15 79.2966 13.9375 79.7966 12.4531ZM20.4528 18.2031C22.9997 15.9375 26.7654 15.6719 29.5935 17.5625L49.9997 31.1563V35.4688C49.9997 40.5938 51.3122 45.5938 53.7498 50H17.4997C16.4528 50 15.5153 49.3438 15.156 48.375C14.7966 47.4063 15.0778 46.2969 15.8747 45.6094L26.7185 36.2969L2.87471 39.9688C1.78096 40.1406 0.702836 39.5625 0.234086 38.5625C-0.234665 37.5625 -0.000289614 36.3594 0.827836 35.625L20.4528 18.2031Z' fill='url(%23paint0_linear_44_2)'/%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_44_2' x1='49.9964' y1='0' x2='49.9964' y2='80' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%232F4858'/%3E%3Cstop offset='0.84375' stop-color='%2300293D'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_44_2'%3E%3Crect width='100' height='80' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+  position: absolute;
+  left: 22%;
+  top: -130px;
+
+  transition: 250ms ease all;
+  opacity: 0;
+}
+
+/* ASSET HOLDINGS */
+
+.details {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1em;
+
+  position: relative;
+}
+
+.holdings,
+.value,
+.assets {
+  background-color: var(--clr-background-secondary);
+  color: var(--clr-text-light);
+
+  width: 100%;
+  height: 400px;
+
+  padding: 1em;
+
+  border-radius: .50em;
+}
+
+.holdings {
+  grid-column: 1 / -1;
+  grid-row: 1;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1em;
+}
+
+.value {
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1em;
+}
+
+.value__title,
+.holdings__title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.value__chart,
+.holdings__chart {
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  justify-self: center;
+
+  font-size: 2em;
+
+  width: 80%;
+}
+
+/* ASSET HOLDINGS */
+
+.assets {
+  grid-column: 1 / -1;
+  grid-row: 3;
+
+  overflow: auto;
+}
+
+.assets table,
+.assets th,
+.assets td {
+  border-bottom: 1px solid var(--clr-text-light);
+  border-collapse: collapse;
+
+  padding: 1em;
+
+  text-align: left;
+}
+
+.assets table {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.assets table button {
+  background-color: var(--clr-blue);
+  color: var(--clr-text-light);
+
+  width: 125px;
+  height: 30px;
+
+  padding: 0em;
+  border: none;
+  border-radius: 6px;
+
+  font-family: "Josefin Sans";
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 250ms ease all;
+}
+
+.assets table button:hover {
+  background-color: var(--clr-orange);
+}
+
+/* ------------------------------------------------------ */
+/* POPUP */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  width: 100%;
+  height: 100%;
+}
+
+.popup__content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--clr-background-secondary);
+  color: var(--clr-text-light);
+
+  width: 80%;
+  height: 50%;
+
+  padding: 1em;
+  border-radius: 12px;
+}
+
+.popup__content button {
+  background-color: var(--clr-red);
+}
+
+/* ------------------------------------------------------ */
+/* Add (adding tokens popup) */
+
+.add,
+.account {
+  max-height: 300px;
+
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  flex-direction: column;
+}
+
+.account {
+  max-width: 400px;
+}
+
+.add {
+  max-width: 350px;
+}
+
+.account form,
+.add form {
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 1em;
+}
+
+.account form label,
+.add form label {
+  font-size: clamp(1em, 3vw, 1.20em);
+  font-weight: 300;
+
+  margin-bottom: 1em;
+}
+
+.account form input[type="text"],
+.add form select {
+  height: 40px;
+  padding: 1em;
+
+  border: none;
+  border-radius: 6px;
+
+  font-family: "Josefin Sans";
+  font-weight: 600;
+
+  margin-bottom: 1em;
+}
+
+.account form input[type="text"] {
+  width: 350px;
+}
+
+.add form select {
+  width: 125px;
+
+  background-color: var(--clr-blue);
+  color: var(--clr-text-light);
+}
+
+.account form input[type="submit"],
+.add form input[type="submit"] {
+  background-color: var(--clr-blue);
+  color: var(--clr-text-light);
+
+  width: 125px;
+  height: 40px;
+  padding: 1em;
+  border: none;
+  border-radius: 6px;
+
+  font-family: "Josefin Sans";
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 250ms ease all;
+}
+
+.account form input[type="submit"]:hover,
+.add form input[type="submit"]:hover {
+  background-color: var(--clr-orange);
+}
+
+/* ------------------------------------------------------ */
+/* COLORS */
+
+.green {
+  color: var(--clr-green);
+}
+
+.red {
+  color: var(--clr-red);
+}
+
+/* ------------------------------------------------------ */
+/* APEX CHARTS */
+
+.apexcharts-menu {
+  background-color: var(--clr-background-secondary) !important;
+  color: var(--clr-text-light);
+}
+
+.apexcharts-menu-item:hover {
+  background-color: var(--clr-orange) !important;
+}
+
+/* ------------------------------------------------------ */
+/* TOKEN DETAILS POPUP */
+
+.token {
+  height: auto;
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.token__title {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.token__title h3 {
+  margin-left: 10px;
+}
+
+.token__title small {
+  font-weight: 600;
+
+  margin-left: 10px;
+}
+
+.token__price {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  font-size: clamp(1.40em, 3vw, 1.80em);
+  font-weight: 700;
+}
+
+.token__price small {
+  font-size: clamp(.75em, 3vw, .85em);
+  font-weight: 300;
+
+  margin-left: 10px;
+}
+
+.token__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1em;
+  grid-auto-flow: dense;
+}
+
+.token__details div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.token__details div h4 {
+  font-weight: 300;
+}
+
+.token__details div p {
+  font-weight: 600;
+}
+
+hr {
+  margin: 1em 0;
+}
+
+/* ------------------------------------------------------ */
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 776px) {
+  .overview {
+    margin: 1em 0 1em 10em;
   }
+
+  .divider::after {
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .holdings {
+    grid-column: 1 / span 6;
+    grid-row: 1;
+  }
+
+  .value {
+    grid-column: 7 / -1;
+    grid-row: 1;
+  }
+
+  .assets {
+    grid-row: 2;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+
+  header,
+  main,
+  footer {
+    grid-column: 3 / -3;
+  }
+}
+
+.untrack {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  background-color: var(--clr-red) !important;
+}
+
+.untrack:hover {
+  background-color: var(--clr-orange) !important;
 }
